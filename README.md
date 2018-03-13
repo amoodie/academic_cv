@@ -35,5 +35,12 @@ After the above command, a call to hash the `tex`-tree is necessary.
 
 <!--
     sudo mkdir /usr/share/texlive/texmf-dist/tex/latex/academic_cv
-    sudo ln -s /home/andrew/Dropbox/git_repos/academic_cv/academic_cv academic_cv.cls /usr/share/texlive/texmf-dist/tex/latex/academic_cv/academic_cv.cls
+
+    sudo mkdir /usr/share/texlive/texmf-dist/tex/latex/academic_cv_reflist
+    
+    sudo ln /home/andrew/Dropbox/git_repos/academic_cv/academic_cv/academic_cv.cls /usr/share/texlive/texmf-dist/tex/latex/academic_cv/academic_cv.cls
+    
+    sudo ln /home/andrew/Dropbox/git_repos/academic_cv_reflist/academic_cv_reflist/academic_cv_reflist.sty /usr/share/texlive/texmf-dist/tex/latex/academic_cv_reflist/academic_cv_reflist.sty
+
+    sudo texhash
     -->

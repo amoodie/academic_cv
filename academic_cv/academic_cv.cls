@@ -51,47 +51,30 @@ citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bo
 }
 
 % some printing params
-\sectionfont{\large}
+
 \setlength{\parindent}{0pt}
 \titlespacing*{\section}{0pt}{2ex}{0.5ex}
-
-% This section is to define new commands
-\newcommand{\HRule}{\rule{\linewidth}{0.2mm}}
-
-
-
 % \setlength{\parskip}{0.1cm plus2mm minus1mm} % adds space between paragraphs
-
-
-% \newtoggle{@draft}
-% \newtoggle{@nonotes}
-
-
 
 % Declare the options
 %
-% \DeclareOption{margin}{\toggletrue{draft}}	% need to use a keval package to enable the ability to set the margin size.
-% \DeclareVoidOption{draft}{\toggletrue{@draft}}						 %	allows draft mode
-% \DeclareVoidOption{final}{\togglefalse{@draft}\toggletrue{@nonotes}} %	allows a final submission mode
-% \DeclareVoidOption{nonotes}{\toggletrue{@nonotes}}					 %	allow removal of notes
-\DeclareStringOption[$\star$]{labelitemi}[$\star$]
-\DeclareStringOption{fontspec}
-\DeclareDefaultOption*{\PassOptionsToClass{\CurrentOption}{article}}	%	inherit article class options
+% \DeclareVoidOption{null}
+\DeclareStringOption[--]{labelitemi}[--]
+% \DeclareDefaultOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessKeyvalOptions*
-
 
 
 % Define Parameters
 % 
-% \setcounter{secnumdepth}{0}			%	prevents automatic numbering for sections
+			%	prevents automatic numbering for sections
 % \definecolor{lgrey}{gray}{0.75}		%	make a light grey color for mnotes
 
 
 
 % % Apply the options
 % % 
-\renewcommand{\labelitemi}{\acv@labelitemi}	%	sets a new list delimiter - a star
-
+% \renewcommand{\labelitemi}{\acv@labelitemi}	%	sets a new list delimiter - a star
+\newcommand{\HRule}{\rule{\linewidth}{0.2mm}}
 % \iftoggle{@draft}{%
 % 	\doublespacing	% make double spaced.
 % 	\newcommand{\cnote}[2][citation needed]{\sethlcolor{lgrey} \hl{[#1:#2]}}		% make note for needed citations. 
@@ -145,14 +128,16 @@ citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bo
 % }{}
 
 
-% % Customize evironments/section heads, mostly to be lower profile.
-% %
-% \renewcommand{\section}{%
-% 	\@startsection
-% 	{section}{1}{\z@}{0.5\baselineskip}%
-% 	{0.1\baselineskip}%
-% 	{\fontseries{b}\selectfont\centering}%
-% }
+% Customize evironments/section heads, mostly to be lower profile.
+%
+\sectionfont{\large}
+\setcounter{secnumdepth}{0}
+\renewcommand{\section}{%
+	\@startsection {section}{1}{\z@}%
+	{-2.5ex \@plus -1ex \@minus -.2ex}%
+	{0.25ex \@plus.1ex}%
+	{\bfseries\large\selectfont}%
+}
 
 % \renewcommand{\subsection}{%
 % 	\@startsection
@@ -180,3 +165,5 @@ citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bo
 % }{%
 %   \end{center}
 % }
+
+% \endinput
