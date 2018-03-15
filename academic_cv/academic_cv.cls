@@ -32,6 +32,7 @@
 \RequirePackage{hyperref}
 \RequirePackage[utf8]{inputenc}
 % \usepackage{times}
+\RequirePackage{xparse}
 \RequirePackage{kvoptions}
 	\SetupKeyvalOptions{%
 		family=acv,
@@ -145,6 +146,30 @@ citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bo
 % 	{0.1\baselineskip}%
 % 	{\fontseries{b}\fontshape{it}\selectfont\raggedright}%
 % }
+
+% \NewDocumentCommand{\experA}{moom}{##1, ##2, ##3, ##4}
+% \NewDocumentCommand{\experA}{moom}{#1, #2, #3, #4}
+
+\newcolumntype{e}{>{\small\raggedright\arraybackslash\hsize=1.75\hsize}X}
+\newcolumntype{D}{>{\small\raggedleft\arraybackslash\hsize=.25\hsize}X}
+\newcolumntype{i}{>{\small\raggedright\arraybackslash\hsize=1\hsize}X}
+% {>{\hsize=.5\hsize}X>{\hsize=1.5\hsize}X}
+
+\newenvironment{experiencelist}{%
+	\newcommand{\exper}[3][]{##2, ##1 & \hfill ##3}
+	\NewDocumentCommand{\experA}{mO{}O{}m}{%
+		##1 & \textsc{##2} & ##3 & ##4%
+		}
+	% ##1 is experience name, ##2 is institution, 
+	% ##3 is long description, ##4 is date
+	% \tabularx{\textwidth}{@{}l X X D}
+	\tabularx{\textwidth}{e i i D}%
+}{%
+	\endtabularx%
+}
+
+
+% \codefrom{a} \quad \codefrom{a}[b] \quad \codefrom{a}[b][c]	
 
 % \newenvironment{tightitemize}{%
 % 	\begin{itemize}[noitemsep,nolistsep]
