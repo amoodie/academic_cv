@@ -136,7 +136,7 @@ citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bo
 \renewcommand{\section}{%
 	\@startsection {section}{1}{\z@}%
 	{-2.5ex \@plus -1ex \@minus -.2ex}%
-	{0.25ex \@plus.1ex}%
+	{0.25ex \@plus 0.1ex \@minus 0ex}%
 	{\bfseries\large\selectfont}%
 }
 
@@ -150,20 +150,29 @@ citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bo
 % \NewDocumentCommand{\experA}{moom}{##1, ##2, ##3, ##4}
 % \NewDocumentCommand{\experA}{moom}{#1, #2, #3, #4}
 
-\newcolumntype{e}{>{\small\raggedright\arraybackslash\hsize=1.75\hsize}X}
-\newcolumntype{D}{>{\small\raggedleft\arraybackslash\hsize=.25\hsize}X}
-\newcolumntype{i}{>{\small\raggedright\arraybackslash\hsize=1\hsize}X}
-% {>{\hsize=.5\hsize}X>{\hsize=1.5\hsize}X}
+\newcolumntype{E}{>{\raggedright\arraybackslash\hsize=1.65\hsize}X}
+\newcolumntype{D}{>{\small\raggedleft\arraybackslash\hsize=.35\hsize}X}
+\newcolumntype{I}{>{\small\raggedleft\arraybackslash\hsize=1.00\hsize}X}
 
-\newenvironment{experiencelist}{%
-	\newcommand{\exper}[3][]{##2, ##1 & \hfill ##3}
-	\NewDocumentCommand{\experA}{mO{}O{}m}{%
-		##1 & \textsc{##2} & ##3 & ##4%
-		}
+\newcolumntype{e}{>{\raggedright\arraybackslash\hsize=.65\hsize}X}
+\newcolumntype{i}{>{\small\raggedleft\arraybackslash\hsize=1.0\hsize}X}
+
+\NewDocumentEnvironment{instexperlist}{g}{%
+
+	\NewDocumentCommand{\exper}{m O{} o m o}{%
 	% ##1 is experience name, ##2 is institution, 
 	% ##3 is long description, ##4 is date
-	% \tabularx{\textwidth}{@{}l X X D}
-	\tabularx{\textwidth}{e i i D}%
+	\IfNoValueTF{##3}
+		{##1 & \textsc{##2} & ##4\\}% true
+		{\IfBooleanTF{##5} % false
+			{##1 & ##3; \textsc{##2} & ##4\\}% true
+			{##1 & \textsc{##2}; ##3 & ##4\\} % false
+			}
+	}% 
+
+	\IfNoValueTF{#1}
+		{\tabularx{\textwidth}{@{}E I D}}% true
+		{\tabularx{\textwidth}{@{}e i D}}% false
 }{%
 	\endtabularx%
 }
