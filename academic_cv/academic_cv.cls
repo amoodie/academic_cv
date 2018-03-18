@@ -154,10 +154,10 @@ citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bo
 \newcolumntype{D}{>{\small\raggedleft\arraybackslash\hsize=.35\hsize}X}
 \newcolumntype{I}{>{\small\raggedleft\arraybackslash\hsize=1.00\hsize}X}
 
-\newcolumntype{e}{>{\raggedright\arraybackslash\hsize=.35\hsize}X}
-\newcolumntype{i}{>{\small\raggedright\arraybackslash\hsize=2.3\hsize}X}
+\newcolumntype{e}{>{\raggedright\arraybackslash\hsize=1.25\hsize}X}
+\newcolumntype{i}{>{\small\raggedleft\arraybackslash\hsize=1.4\hsize}X}
 
-\NewDocumentEnvironment{instexperlist}{g}{%
+\NewDocumentEnvironment{experlist}{O{E I D} g}{%
 
 	\NewDocumentCommand{\exper}{m O{} o m g}{%
 	% ##1 is experience name, ##2 is institution, 
@@ -170,8 +170,8 @@ citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bo
 			}
 	}% 
 
-	\IfNoValueTF{#1}
-		{\tabularx{\textwidth}{@{}E I D}}% true
+	\IfNoValueTF{#2}
+		{\tabularx{\textwidth}{@{} #1}}% true
 		{\tabularx{\textwidth}{@{}e i D}}% false
 }{%
 	\endtabularx%
