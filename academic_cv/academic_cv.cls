@@ -74,7 +74,7 @@ citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bo
 
 % % Apply the options
 % % 
-% \renewcommand{\labelitemi}{\acv@labelitemi}	%	sets a new list delimiter - a star
+\renewcommand{\labelitemi}{\acv@labelitemi}	%	sets a new list delimiter - a star
 \newcommand{\HRule}{\rule{\linewidth}{0.2mm}}
 % \iftoggle{@draft}{%
 % 	\doublespacing	% make double spaced.
@@ -154,19 +154,19 @@ citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bo
 \newcolumntype{D}{>{\small\raggedleft\arraybackslash\hsize=.35\hsize}X}
 \newcolumntype{I}{>{\small\raggedleft\arraybackslash\hsize=1.00\hsize}X}
 
-\newcolumntype{e}{>{\raggedright\arraybackslash\hsize=.65\hsize}X}
-\newcolumntype{i}{>{\small\raggedleft\arraybackslash\hsize=1.0\hsize}X}
+\newcolumntype{e}{>{\raggedright\arraybackslash\hsize=.35\hsize}X}
+\newcolumntype{i}{>{\small\raggedright\arraybackslash\hsize=2.3\hsize}X}
 
 \NewDocumentEnvironment{instexperlist}{g}{%
 
-	\NewDocumentCommand{\exper}{m O{} o m o}{%
+	\NewDocumentCommand{\exper}{m O{} o m g}{%
 	% ##1 is experience name, ##2 is institution, 
 	% ##3 is long description, ##4 is date
 	\IfNoValueTF{##3}
 		{##1 & \textsc{##2} & ##4\\}% true
-		{\IfBooleanTF{##5} % false
+		{\IfBooleanTF{##3} % false
 			{##1 & ##3; \textsc{##2} & ##4\\}% true
-			{##1 & \textsc{##2}; ##3 & ##4\\} % false
+			{##1 & {##2}; \textsc{##3} & ##4\\} % false
 			}
 	}% 
 
