@@ -157,6 +157,10 @@ citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bo
 \newcolumntype{e}{>{\raggedright\arraybackslash\hsize=1.25\hsize}X}
 \newcolumntype{i}{>{\small\raggedleft\arraybackslash\hsize=1.4\hsize}X}
 
+\newcolumntype{l}{>{\small\raggedleft\arraybackslash\hsize=2.65\hsize}X}
+\newcolumntype{n}{>{\small\raggedleft\arraybackslash\hsize=0\hsize}X}
+
+
 \NewDocumentEnvironment{experlist}{O{E I D} g}{%
 
 	\NewDocumentCommand{\exper}{m O{} o m g}{%
@@ -170,9 +174,10 @@ citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bo
 			}
 	}% 
 
-	\IfNoValueTF{#2}
-		{\tabularx{\textwidth}{@{} #1}}% true
-		{\tabularx{\textwidth}{@{}e i D}}% false
+	\tabularx{\textwidth}{@{} #1}
+	% \IfValueTF{#1}
+	% 	{\tabularx{\textwidth}{@{} #1}}% true
+	% 	{\tabularx{\textwidth}{@{}e i D}}% false
 }{%
 	\endtabularx%
 }
