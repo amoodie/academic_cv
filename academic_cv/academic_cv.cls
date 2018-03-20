@@ -45,11 +45,15 @@
 	\defbibfilter{peer}{type=article and not subtype=nopeer}
 	\defbibfilter{nopeer}{not type=inproceedings and subtype=nopeer}
 	\defbibfilter{conf}{type=inproceedings}
+	\nocite{*} % add support to turn this off with an option 
+			   %(i.e., declare them yourself in your document)
 
 % set up hyperref printing
-\hypersetup{colorlinks = true,linkcolor = black,anchorcolor = black,
-citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bookmarksopenlevel = 2,pdfstartview = {FitH},pdfborder = {0 0 0}
-}
+\hypersetup{colorlinks = true, linkcolor = black, anchorcolor = black,
+			citecolor = black, urlcolor=blue, bookmarksopen = true,
+			bookmarksnumbered = true, bookmarksopenlevel = 2, pdfstartview = {FitH},
+			pdfborder = {0 0 0}
+	}
 
 % some printing params
 
@@ -154,30 +158,58 @@ citecolor = black,urlcolor=blue,bookmarksopen = true,bookmarksnumbered = true,bo
 \newcolumntype{D}{>{\small\raggedleft\arraybackslash\hsize=.35\hsize}X}
 \newcolumntype{I}{>{\small\raggedleft\arraybackslash\hsize=1.00\hsize}X}
 
-\newcolumntype{e}{>{\raggedright\arraybackslash\hsize=1.25\hsize}X}
-\newcolumntype{i}{>{\small\raggedleft\arraybackslash\hsize=1.4\hsize}X}
+\newcolumntype{e}{>{\raggedright\arraybackslash\hsize=1.2\hsize}X}
+\newcolumntype{i}{>{\small\raggedleft\arraybackslash\hsize=1.45\hsize}X}
 
-\newcolumntype{l}{>{\small\raggedleft\arraybackslash\hsize=2.65\hsize}X}
+\newcolumntype{s}{>{\small\raggedright\arraybackslash\hsize=0.25\hsize}X}
+\newcolumntype{l}{>{\raggedright\arraybackslash\hsize=2.4\hsize}X}
 \newcolumntype{n}{>{\small\raggedleft\arraybackslash\hsize=0\hsize}X}
 
+\newcolumntype{q}{>{\small\raggedright\arraybackslash\hsize=1.325\hsize}X}
+
+\newcolumntype{k}{>{\raggedright\arraybackslash\hsize=0.3\hsize}X}
+\newcolumntype{K}{>{\raggedright\arraybackslash\hsize=1.467\hsize}X}
 
 \NewDocumentEnvironment{experlist}{O{E I D} g}{%
+	
+	\NewDocumentCommand{\exper}{s t| m o o m g}{%
+		\IfNoValueTF{##4}% if there is no optional arg supplied
+			{##3 && ##6\\}% true
+			{\IfNoValueTF{##5}% false, if there is anything in 5 
+				{##3 & \usesc{##1}{##4} & ##6\\}% true
+				{\IfBooleanTF{##2}% false, if flip flag
+					{##3 & ##5; \usesc{##1}{##4} & ##6\\}%
+					{##3 & \usesc{##1}{##4}; ##5 & ##6\\}% 
+				}%
+			}%
+	}%
 
-	\NewDocumentCommand{\exper}{m O{} o m g}{%
-	% ##1 is experience name, ##2 is institution, 
-	% ##3 is long description, ##4 is date
-	\IfNoValueTF{##3}
-		{##1 & \textsc{##2} & ##4\\}% true
-		{\IfBooleanTF{##3} % false
-			{##1 & ##3; \textsc{##2} & ##4\\}% true
-			{##1 & {##2}; \textsc{##3} & ##4\\} % false
-			}
-	}% 
 
-	\tabularx{\textwidth}{@{} #1}
-	% \IfValueTF{#1}
-	% 	{\tabularx{\textwidth}{@{} #1}}% true
-	% 	{\tabularx{\textwidth}{@{}e i D}}% false
+	\NewDocumentCommand{\organ}{s m o}{%
+		\IfNoValueTF{##3}%
+			{##2\\}%
+			{##2; \usesc{##1}{##3}\\}%
+	}%
+
+
+	\NewDocumentCommand{\usesc}{m m}{%
+		\IfBooleanTF{##1}%
+			{{##2}}%
+			{\textsc{##2}}%
+		}%
+
+	\tabularx{\textwidth}{@{} #1}%
+}{%
+	\endtabularx%
+}
+
+
+\NewDocumentEnvironment{skilllist}{O{k K} g}{
+	\NewDocumentCommand{\skillset}{m m}{%
+		##1: & ##2 \\[0.3\baselineskip]
+	}
+
+	\tabularx{\textwidth}{@{} #1}%
 }{%
 	\endtabularx%
 }
