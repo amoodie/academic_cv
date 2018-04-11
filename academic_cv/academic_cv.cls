@@ -140,7 +140,7 @@
 \renewcommand{\section}{%
 	\@startsection {section}{1}{\z@}%
 	{-2.5ex \@plus -1ex \@minus -.2ex}%
-	{0.25ex \@plus 0.1ex \@minus 0ex}%
+	{0.5ex \@plus 0.1ex \@minus 0ex}%
 	{\bfseries\large\selectfont}%
 }
 
@@ -151,8 +151,7 @@
 % 	{\fontseries{b}\fontshape{it}\selectfont\raggedright}%
 % }
 
-% \NewDocumentCommand{\experA}{moom}{##1, ##2, ##3, ##4}
-% \NewDocumentCommand{\experA}{moom}{#1, #2, #3, #4}
+
 
 \newcolumntype{E}{>{\raggedright\arraybackslash\hsize=1.65\hsize}X}
 \newcolumntype{D}{>{\small\raggedleft\arraybackslash\hsize=.35\hsize}X}
