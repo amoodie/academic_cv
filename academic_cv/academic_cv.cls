@@ -50,7 +50,7 @@
 
 % set up hyperref printing
 \hypersetup{colorlinks = true, linkcolor = black, anchorcolor = black,
-			citecolor = black, urlcolor=blue, bookmarksopen = true,
+			citecolor = black, urlcolor=black, bookmarksopen = true,
 			bookmarksnumbered = true, bookmarksopenlevel = 2, pdfstartview = {FitH},
 			pdfborder = {0 0 0}
 	}
@@ -153,18 +153,18 @@
 
 
 
-\newcolumntype{E}{>{\raggedright\arraybackslash\hsize=1.65\hsize}X}
-\newcolumntype{D}{>{\small\raggedleft\arraybackslash\hsize=.35\hsize}X}
+\newcolumntype{E}{>{\raggedright\arraybackslash\hsize=1.675\hsize}X}
+\newcolumntype{D}{>{\small\raggedleft\arraybackslash\hsize=.325\hsize}X}
 \newcolumntype{I}{>{\small\raggedleft\arraybackslash\hsize=1.00\hsize}X}
 
-\newcolumntype{e}{>{\raggedright\arraybackslash\hsize=1.2\hsize}X}
-\newcolumntype{i}{>{\small\raggedleft\arraybackslash\hsize=1.45\hsize}X}
+\newcolumntype{e}{>{\raggedright\arraybackslash\hsize=1.25\hsize}X}
+\newcolumntype{i}{>{\small\raggedleft\arraybackslash\hsize=1.425\hsize}X}
 
 \newcolumntype{s}{>{\small\raggedright\arraybackslash\hsize=0.25\hsize}X}
 \newcolumntype{l}{>{\raggedright\arraybackslash\hsize=2.4\hsize}X}
 \newcolumntype{n}{>{\small\raggedleft\arraybackslash\hsize=0\hsize}X}
 
-\newcolumntype{q}{>{\small\raggedright\arraybackslash\hsize=1.325\hsize}X}
+\newcolumntype{q}{>{\small\raggedright\arraybackslash\hsize=1.3375\hsize}X}
 
 \newcolumntype{k}{>{\raggedright\arraybackslash\hsize=0.3\hsize}X}
 \newcolumntype{K}{>{\raggedright\arraybackslash\hsize=1.467\hsize}X}
