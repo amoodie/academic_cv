@@ -161,7 +161,7 @@
 \newcolumntype{i}{>{\small\raggedleft\arraybackslash\hsize=1.425\hsize}X}
 
 \newcolumntype{s}{>{\small\raggedright\arraybackslash\hsize=0.25\hsize}X}
-\newcolumntype{l}{>{\raggedright\arraybackslash\hsize=2.4\hsize}X}
+\newcolumntype{w}{>{\raggedright\arraybackslash\hsize=2.4\hsize}X}
 \newcolumntype{n}{>{\small\raggedleft\arraybackslash\hsize=0\hsize}X}
 
 \newcolumntype{q}{>{\small\raggedright\arraybackslash\hsize=1.3375\hsize}X}
@@ -237,3 +237,6 @@
 % }
 
 % \endinput
+
+
+
