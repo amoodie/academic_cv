@@ -48,6 +48,12 @@
 	\nocite{*} % add support to turn this off with an option 
 			   %(i.e., declare them yourself in your document)
 
+    \NewBibliographyString{inrevision}
+	\DefineBibliographyStrings{english}{inrevision = {in revision}}
+	\NewBibliographyString{inreview}
+	\DefineBibliographyStrings{english}{inreview = {in review}}
+
+
 % set up hyperref printing
 \hypersetup{colorlinks = true, linkcolor = black, anchorcolor = black,
 			citecolor = black, urlcolor=black, bookmarksopen = true,
@@ -59,6 +65,8 @@
 
 \setlength{\parindent}{0pt}
 \titlespacing*{\section}{0pt}{2ex}{0.5ex}
+\titlespacing*{\subsection}{0pt}{2ex}{0.5ex}
+
 % \setlength{\parskip}{0.1cm plus2mm minus1mm} % adds space between paragraphs
 
 % Declare the options
@@ -144,12 +152,12 @@
 	{\bfseries\large\selectfont}%
 }
 
-% \renewcommand{\subsection}{%
-% 	\@startsection
-% 	{subsection}{1}{\z@}{0.2\baselineskip}%
-% 	{0.1\baselineskip}%
-% 	{\fontseries{b}\fontshape{it}\selectfont\raggedright}%
-% }
+\renewcommand{\subsection}{%
+	\@startsection
+	{subsection}{1}{\z@}{0.2\baselineskip}%
+	{0.1\baselineskip}%
+	{\fontseries{b}\fontshape{it}\selectfont\raggedright}%
+}
 
 
 
