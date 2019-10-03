@@ -45,13 +45,15 @@
 	\defbibfilter{peer}{type=article and not subtype=nopeer}
 	\defbibfilter{nopeer}{not type=inproceedings and subtype=nopeer}
 	\defbibfilter{conf}{type=inproceedings}
-	\nocite{*} % add support to turn this off with an option 
+	% \nocite{*} % add support to turn this off with an option 
 			   %(i.e., declare them yourself in your document)
 
     \NewBibliographyString{inrevision}
 	\DefineBibliographyStrings{english}{inrevision = {in revision}}
 	\NewBibliographyString{inreview}
 	\DefineBibliographyStrings{english}{inreview = {in review}}
+	\NewBibliographyString{accepted}
+	\DefineBibliographyStrings{english}{accepted = {accepted}}
 
 
 % set up hyperref printing
