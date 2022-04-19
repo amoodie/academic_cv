@@ -21,7 +21,6 @@
 % Preliminary declarations
 % 
 \LoadClass[11pt]{article}
-% \RequirePackage{geometry}	%	for margins etc
 \RequirePackage{etoolbox}	%	for if-then statements
 \RequirePackage{multicol}
 \RequirePackage{sectsty}
@@ -31,7 +30,7 @@
 \RequirePackage[shortlabels]{enumitem}
 \RequirePackage{hyperref}
 \RequirePackage[utf8]{inputenc}
-% \usepackage{times}
+
 \RequirePackage{xparse}
 \RequirePackage{kvoptions}
 	\SetupKeyvalOptions{%
@@ -45,8 +44,10 @@
 	\defbibfilter{peer}{type=article and not subtype=nopeer}
 	\defbibfilter{nopeer}{not type=inproceedings and subtype=nopeer}
 	\defbibfilter{conf}{type=inproceedings}
-	% \nocite{*} % add support to turn this off with an option 
-			   %(i.e., declare them yourself in your document)
+	\defbibfilter{invitedpresentation}{type=unpublished and not subtype=nopeer and not subtype=peer}
+
+	\defbibcheck{published}{%
+		\iffieldundef{pubstate}{}{\skipentry}}
 
     \NewBibliographyString{inrevision}
 	\DefineBibliographyStrings{english}{inrevision = {in revision}}
@@ -69,87 +70,24 @@
 \titlespacing*{\section}{0pt}{2ex}{0.5ex}
 \titlespacing*{\subsection}{0pt}{2ex}{0.5ex}
 
-% \setlength{\parskip}{0.1cm plus2mm minus1mm} % adds space between paragraphs
 
 % Declare the options
-%
-% \DeclareVoidOption{null}
 \DeclareStringOption[--]{labelitemi}[--]
 % \DeclareDefaultOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessKeyvalOptions*
 
 
-% Define Parameters
-% 
-			%	prevents automatic numbering for sections
-% \definecolor{lgrey}{gray}{0.75}		%	make a light grey color for mnotes
-
-
-
 % % Apply the options
-% % 
 \renewcommand{\labelitemi}{\acv@labelitemi}	%	sets a new list delimiter - a star
 \newcommand{\HRule}{\rule{\linewidth}{0.2mm}}
-% \iftoggle{@draft}{%
-% 	\doublespacing	% make double spaced.
-% 	\newcommand{\cnote}[2][citation needed]{\sethlcolor{lgrey} \hl{[#1:#2]}}		% make note for needed citations. 
-% 	\newcommand{\pnote}[1]{\sethlcolor{GreenYellow} \textcolor{black}{\hl{[#1]}}}	% make note for personal notes.
-% 	\newcommand{\mnote}[2]{\sethlcolor{lgrey} \hl{#1} \todo{#2}}					% make note for margin discussion.
-% %		make a custom page size that allows an extra area for margins.
-% 	\geometry{%
-% 		left = 1in,%
-% 		right = 2.5in,%
-% 		top = 1in,%
-% 		bottom = 1in,%
-% 		papersize = {10in, 11in},%
-% 		marginparwidth = 2in
-% 	}
-% 	\linenumbers
-% }{%
-% %	sets the paper size and standard 1 inch margins. need to add functionality eventually to be able to set margins
-% %	and paper size and text size.
-% 	\geometry{letterpaper, margin=1in}	
-% 	\newcommand{\cnote}[1]{}
-% 	\newcommand{\pnote}[1]{}
-% 	\newcommand{\mnote}[1]{}
-% }
-
-% %	allows an option to disable notes entirely, but preserve draft mode
-% \iftoggle{@nonotes}{%
-% 	\renewcommand{\cnote}[1]{}
-% 	\renewcommand{\pnote}[1]{}
-% 	\renewcommand{\mnote}[1]{}
-% }{%
-% }
-
-% % 	customize title to be lower profile and centered at the top.
-% \renewcommand{\maketitle}{%
-% 	{%
-% 		\centering\fontseries{b}\selectfont%
-% 		\@title \\%
-% 		\rule[1ex]{\textwidth}{0.5pt}%
-% %	This is to try to change the behavior to allow author and date to appear or disappear.
-% %			\ifboolexpr{ test {\ifdefempty{\author}} and test {\ifdefempty{\date}} } {
-% %				\rule[1ex]{\textwidth}{0.5pt}%
-% %			}{
-% %				\normalsize\fontseries{m}\selectfont\@author{} --- \@date{} \\%
-% %				\rule[1ex]{\textwidth}{0.5pt}%
-% %			}
-% 	}
-% }
-
-% \ifdefstring{\cp@fontspec}{times}{%
-% 	\RequirePackage{times}
-% }{}
 
 
 % Customize evironments/section heads, mostly to be lower profile.
-%
 \sectionfont{\large}
 \setcounter{secnumdepth}{0}
 \renewcommand{\section}{%
 	\@startsection {section}{1}{\z@}%
-	{-2.5ex \@plus -1ex \@minus -.2ex}%
+	{-2.5ex \@plus -0ex \@minus -.2ex}%
 	{0.5ex \@plus 0.1ex \@minus 0ex}%
 	{\bfseries\large\selectfont}%
 }
@@ -158,13 +96,14 @@
 	\@startsection
 	{subsection}{1}{\z@}{0.2\baselineskip}%
 	{0.1\baselineskip}%
-	{\fontseries{b}\fontshape{it}\selectfont\raggedright}%
+	{\bfseries\fontshape{it}\selectfont\raggedright}%
 }
 
 
-
+%% set up the columns for sections throughout the cv
 \newcolumntype{E}{>{\raggedright\arraybackslash\hsize=1.675\hsize}X}
 \newcolumntype{D}{>{\small\raggedleft\arraybackslash\hsize=.325\hsize}X}
+\newcolumntype{d}{>{\small\raggedright\arraybackslash\hsize=.325\hsize}X}
 \newcolumntype{I}{>{\small\raggedleft\arraybackslash\hsize=1.00\hsize}X}
 
 \newcolumntype{e}{>{\raggedright\arraybackslash\hsize=1.25\hsize}X}
@@ -179,6 +118,11 @@
 \newcolumntype{k}{>{\raggedright\arraybackslash\hsize=0.3\hsize}X}
 \newcolumntype{K}{>{\raggedright\arraybackslash\hsize=1.467\hsize}X}
 
+\newcolumntype{y}{>{\small\raggedright\arraybackslash\hsize=.15\hsize}X}
+\newcolumntype{f}{>{\raggedright\arraybackslash\hsize=1.617\hsize}X}
+
+
+% the main package environment is th experience list
 \NewDocumentEnvironment{experlist}{O{E I D} g}{%
 	
 	\NewDocumentCommand{\exper}{s t| m o o m g}{%
@@ -213,6 +157,19 @@
 }
 
 
+% a simple listing with year of activity first activity
+\NewDocumentEnvironment{yearlist}{O{y f} g}{
+	\NewDocumentCommand{\yearitem}{m m}{%
+		##1 & ##2 \\[0.3\baselineskip]
+	}
+
+	\tabularx{\textwidth}{@{} #1}%
+}{%
+	\endtabularx%
+}
+
+
+% simple listing of skills
 \NewDocumentEnvironment{skilllist}{O{k K} g}{
 	\NewDocumentCommand{\skillset}{m m}{%
 		##1: & ##2 \\[0.3\baselineskip]
@@ -224,29 +181,7 @@
 }
 
 
-% \codefrom{a} \quad \codefrom{a}[b] \quad \codefrom{a}[b][c]	
-
-% \newenvironment{tightitemize}{%
-% 	\begin{itemize}[noitemsep,nolistsep]
-% }{%
-% 	\end{itemize}
-% }
-
-% \newenvironment{tightenum}{%
-% 	\begin{enumerate}[noitemsep,nolistsep]
-% }{%
-% 	\end{enumerate}
-% }
-
-% \newenvironment{tightcenter}{%
-%   \setlength\topsep{0pt}
-%   \setlength\parskip{0pt}
-%   \begin{center}
-% }{%
-%   \end{center}
-% }
-
-% \endinput
+\endinput
 
 
 
