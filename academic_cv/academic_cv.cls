@@ -72,6 +72,7 @@
 \setlength{\parindent}{0pt}
 \titlespacing*{\section}{0pt}{2ex}{0.5ex}
 \titlespacing*{\subsection}{0pt}{2ex}{0.5ex}
+\titlespacing*{\subsubsection}{0pt}{2ex}{0.5ex}
 
 
 % Declare the options
@@ -102,6 +103,13 @@
 	{\bfseries\fontshape{it}\selectfont\raggedright}%
 }
 
+\renewcommand{\subsubsection}{%
+	\@startsection
+	{subsubsection}{1}{\z@}{0.2\baselineskip}%
+	{0.1\baselineskip}%
+	{\fontshape{it}\selectfont\raggedright}%
+}
+
 
 %% set up the columns for sections throughout the cv
 \newcolumntype{E}{>{\raggedright\arraybackslash\hsize=1.675\hsize}X}
@@ -115,6 +123,10 @@
 \newcolumntype{s}{>{\small\raggedright\arraybackslash\hsize=0.25\hsize}X}
 \newcolumntype{w}{>{\raggedright\arraybackslash\hsize=2.4\hsize}X}
 \newcolumntype{n}{>{\small\raggedleft\arraybackslash\hsize=0\hsize}X}
+
+\newcolumntype{a}{>{\small\raggedright\arraybackslash\hsize=0.16\hsize}X}
+\newcolumntype{b}{>{\small\raggedright\arraybackslash\hsize=0.0\hsize}X}
+\newcolumntype{c}{>{\small\raggedright\arraybackslash\hsize=0.85\hsize}X}
 
 \newcolumntype{q}{>{\small\raggedright\arraybackslash\hsize=1.3375\hsize}X}
 
