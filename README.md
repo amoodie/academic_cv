@@ -24,10 +24,7 @@ A proper symbolic link resides in your `tex`-tree and points to the github repos
 
 For a linux user with the default location of the `texlive` install, the following yields a proper symbolic link:
 
-    sudo mkdir <local_path_to_textree>/tex/latex/academic_cv
-    sudo ln -s <local_path_above_this_repo>/academic_cv/academic_cv/academic_cv.cls <local_path_to_textree>/tex/latex/academic_cv/academic_cv.cls
-
-Note that the `tex`-tree is everything below `/usr/share/texlive/texmf-dist/`.
+    sudo ln -s <local_path_above_this_repo>/academic_cv/academic_cv/ usr/local/share/texmf/tex/latex/academic_cv
 
 After the above command, a call to hash the `tex`-tree is necessary.
 
